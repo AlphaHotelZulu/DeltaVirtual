@@ -26,9 +26,9 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #09283a;
-  --ink: #06283a;
-  --muted: #344a5f;
+  --foreground: #041c2c;
+  --ink: #041c2c;
+  --muted: #041c2c;
   --navy: #042536;
   --navy-deep: #022131;
   --red: #c91432;
@@ -152,7 +152,7 @@ a {
 
 .button {
   display: inline-flex;
-  min-height: 46px;
+  min-height: 38px;
   align-items: center;
   justify-content: center;
   border-radius: 8px;
@@ -161,6 +161,7 @@ a {
   font-size: 13px;
   font-weight: 600;
   padding: 0 26px;
+  text-align: center;
   text-transform: uppercase;
   transition:
     background 160ms ease,
@@ -173,7 +174,7 @@ a {
 }
 
 .button-small {
-  min-height: 44px;
+  min-height: 36px;
   padding: 0 22px;
 }
 
