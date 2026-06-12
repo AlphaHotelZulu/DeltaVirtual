@@ -389,19 +389,19 @@ a {
 .staff-hero {
   background:
     linear-gradient(rgba(4, 28, 44, 0.76), rgba(4, 28, 44, 0.76)),
-    url("/images/news-website-launch.png") center 48% / cover;
+    url("/images/staff/staff-hero.png") center 50% / cover;
 }
 
 .fleet-hero {
   background:
     linear-gradient(rgba(4, 28, 44, 0.78), rgba(4, 28, 44, 0.78)),
-    url("/images/about-delta-a330.webp") center 55% / cover;
+    url("/images/fleet/fleet-hero-atl.png") center 48% / cover;
 }
 
 .hubs-hero {
   background:
     linear-gradient(rgba(4, 28, 44, 0.72), rgba(4, 28, 44, 0.72)),
-    url("/images/news-ceo-message.webp") center 50% / cover;
+    url("/images/hubs-hero-atl.png") center 50% / cover;
 }
 
 .partners-hero {
@@ -444,9 +444,10 @@ a {
 }
 
 .partners-section {
-  min-height: 520px;
-  padding: clamp(72px, 6.5vw, 100px) var(--site-gutter)
-    clamp(78px, 7vw, 110px);
+  display: flex;
+  min-height: clamp(360px, 30vw, 460px);
+  align-items: center;
+  padding: clamp(42px, 4.5vw, 64px) var(--site-gutter);
   background: #ffffff;
 }
 
@@ -477,6 +478,7 @@ a {
 
 .partner-feature-logo {
   position: relative;
+  display: block;
   width: 100%;
   height: clamp(126px, 11vw, 172px);
 }
@@ -575,7 +577,7 @@ a {
   color: #003f77;
   cursor: pointer;
   font: inherit;
-  font-size: var(--heading-text-size);
+  font-size: clamp(20px, 1.45vw, 25px);
   font-weight: 400;
   letter-spacing: 0;
   line-height: 1.12;
@@ -618,7 +620,7 @@ a {
   color: var(--ink);
   cursor: pointer;
   font: inherit;
-  font-size: clamp(22px, 1.8vw, 30px);
+  font-size: clamp(18px, 1.35vw, 24px);
   font-weight: 400;
   letter-spacing: 0;
   scroll-margin-top: calc(var(--header-height) + 24px);
@@ -655,7 +657,7 @@ a {
   color: var(--ink);
   cursor: pointer;
   font: inherit;
-  font-size: clamp(20px, 1.6vw, 27px);
+  font-size: clamp(20px, 1.35vw, 24px);
   font-weight: 400;
   letter-spacing: 0;
   scroll-margin-top: calc(var(--header-height) + 24px);
@@ -703,10 +705,14 @@ a {
   object-fit: contain;
 }
 
+.fleet-aircraft-image-a321neo img {
+  transform: scale(1.09);
+}
+
 .fleet-card-copy h2 {
   margin: 0;
   color: #003f77;
-  font-size: var(--heading-text-size);
+  font-size: clamp(20px, 1.45vw, 25px);
   font-weight: 600;
   letter-spacing: 0;
   line-height: 1.15;
@@ -732,26 +738,21 @@ a {
   align-items: start;
 }
 
-.photo-placeholder {
+.leader-photo {
+  position: relative;
   display: flex;
   aspect-ratio: 1;
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-  background: #d2d2d0;
+  overflow: hidden;
+  background: #e6e7e8;
 }
 
-.photo-placeholder span {
-  display: inline-flex;
-  min-width: 128px;
-  min-height: 38px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  background: #ffffff;
-  color: #9b9da0;
-  font-size: 14px;
-  font-weight: 400;
+.leader-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .leader-copy {
@@ -772,7 +773,7 @@ a {
 .staff-card h2 {
   margin: 0;
   color: var(--ink);
-  font-size: var(--heading-text-size);
+  font-size: clamp(20px, 1.45vw, 25px);
   font-weight: 600;
   letter-spacing: 0;
   line-height: 1.12;
@@ -933,7 +934,7 @@ a {
   .team-tabs button,
   .fleet-tabs button {
     min-height: 58px;
-    font-size: 19px;
+    font-size: 17px;
   }
 
   .leader-row {
@@ -941,7 +942,7 @@ a {
     gap: 22px;
   }
 
-  .photo-placeholder {
+  .leader-photo {
     max-width: 280px;
     width: 100%;
   }

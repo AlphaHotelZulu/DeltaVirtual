@@ -108,10 +108,10 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
       </nav>
 
       <div className="account-actions">
-        <a className="sign-up" href="#">
+        <a className="sign-up" href="https://apply.dlva.org">
           Sign Up
         </a>
-        <a className="button button-small" href="#">
+        <a className="button button-small" href="https://crew.dlva.org">
           Log In
         </a>
       </div>

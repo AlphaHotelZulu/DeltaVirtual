@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 const leadershipTeam = [
@@ -68,8 +69,13 @@ export function StaffDirectory() {
         <div className="leadership-list" role="tabpanel">
           {leadershipTeam.map((person) => (
             <article className="leader-row" key={person.name}>
-              <div className="photo-placeholder">
-                <span>Add Photo</span>
+              <div className="leader-photo">
+                <Image
+                  src="/images/staff/blank-profile-picture.png"
+                  alt=""
+                  width={640}
+                  height={640}
+                />
               </div>
               <div className="leader-copy">
                 <p className="team-role">{person.role}</p>

@@ -31,7 +31,12 @@ export default function PartnersPage() {
               </p>
             </div>
 
-            <div className="partner-feature-logo">
+            <a
+              className="partner-feature-logo"
+              href="https://www.vatsim.net"
+              rel="noreferrer"
+              target="_blank"
+            >
               <Image
                 alt="VATSIM"
                 fill
@@ -39,7 +44,7 @@ export default function PartnersPage() {
                 sizes="(max-width: 900px) 80vw, 430px"
                 src="/images/partners/vatsim-logo.png"
               />
-            </div>
+            </a>
           </div>
         </div>
       </section>
