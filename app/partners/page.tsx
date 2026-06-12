@@ -4,7 +4,7 @@ import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
 
 export const metadata: Metadata = {
-  title: "Partners | Delta Virtual",
+  title: "Partners",
   description: "Visit Delta Virtual's virtual aviation partners.",
 };
 

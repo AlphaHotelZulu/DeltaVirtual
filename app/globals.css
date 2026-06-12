@@ -506,13 +506,23 @@ a {
   min-height: clamp(520px, 50vw, 730px);
   overflow: hidden;
   border-radius: 0;
-  background: #33598c;
+  background: #001122;
 }
 
+.hub-map.leaflet-container,
 .hub-map .leaflet-container {
-  background: #33598c;
+  background: #001122;
   color: #ffffff;
   font-family: Whitney, "Avenir Next", Arial, sans-serif;
+}
+
+.hub-map .leaflet-tile-pane {
+  background: #001122;
+}
+
+.hub-map .leaflet-tile {
+  opacity: 0.72 !important;
+  filter: brightness(0.72) sepia(1) saturate(1.7) hue-rotate(172deg);
 }
 
 .hub-map .leaflet-control-zoom {
@@ -643,14 +653,31 @@ a {
 }
 
 .fleet-tabs {
+  position: relative;
   display: grid;
   margin-bottom: clamp(42px, 4.5vw, 56px);
   grid-template-columns: repeat(4, minmax(0, 1fr));
   border-bottom: 4px solid #cfcfcf;
 }
 
+.fleet-tabs-indicator {
+  position: absolute;
+  right: auto;
+  bottom: -4px;
+  left: 0;
+  z-index: 1;
+  height: 4px;
+  background: #003366;
+  pointer-events: none;
+  transition:
+    opacity 140ms ease,
+    transform 230ms ease,
+    width 230ms ease;
+}
+
 .fleet-tabs button {
   position: relative;
+  z-index: 2;
   min-height: 62px;
   border: 0;
   background: transparent;
@@ -667,16 +694,6 @@ a {
 
 .fleet-tabs button.active {
   font-weight: 600;
-}
-
-.fleet-tabs button.active::after {
-  position: absolute;
-  right: 0;
-  bottom: -4px;
-  left: 0;
-  height: 4px;
-  background: #003f77;
-  content: "";
 }
 
 .fleet-list {
@@ -711,7 +728,7 @@ a {
 
 .fleet-card-copy h2 {
   margin: 0;
-  color: #003f77;
+  color: var(--ink);
   font-size: clamp(20px, 1.45vw, 25px);
   font-weight: 600;
   letter-spacing: 0;
@@ -721,9 +738,27 @@ a {
 
 .fleet-card-copy p {
   margin: 28px 0 0;
-  color: #2f6799;
-  font-size: var(--body-text-size);
+  color: var(--foreground);
+  font-size: clamp(10px, 0.72vw, 12px);
   font-weight: 400;
+}
+
+.fleet-card-regional .fleet-card-copy {
+  position: relative;
+  align-self: stretch;
+  min-height: 100%;
+}
+
+.fleet-card-regional .fleet-card-copy h2 {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.fleet-card-regional .fleet-card-copy p {
+  position: absolute;
+  top: calc(50% + 34px);
+  margin: 0;
 }
 
 .leadership-list {

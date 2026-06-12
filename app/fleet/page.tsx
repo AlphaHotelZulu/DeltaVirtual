@@ -4,7 +4,7 @@ import { SiteHeader } from "../components/SiteHeader";
 import { FleetDirectory } from "./FleetDirectory";
 
 export const metadata: Metadata = {
-  title: "Fleet | Delta Virtual",
+  title: "Fleet",
   description: "Explore Delta Virtual's Airbus, Boeing, Bombardier, and Embraer fleet.",
 };
 

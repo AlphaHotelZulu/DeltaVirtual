@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Manufacturer = "airbus" | "boeing" | "bombardier" | "embraer";
 
@@ -10,6 +10,12 @@ type Aircraft = {
   imageClassName?: string;
   name: string;
   operator?: string;
+};
+
+type IndicatorStyle = {
+  opacity: number;
+  transform: string;
+  width: number;
 };
 
 const manufacturers: Array<{ id: Manufacturer; label: string }> = [
@@ -85,12 +91,67 @@ const fleet: Record<Manufacturer, Aircraft[]> = {
 };
 
 export function FleetDirectory() {
+  const tabsRef = useRef<HTMLDivElement | null>(null);
+  const buttonRefs = useRef<Record<Manufacturer, HTMLButtonElement | null>>({
+    airbus: null,
+    boeing: null,
+    bombardier: null,
+    embraer: null,
+  });
   const [selectedManufacturer, setSelectedManufacturer] =
     useState<Manufacturer>("airbus");
+  const [hoveredManufacturer, setHoveredManufacturer] =
+    useState<Manufacturer | null>(null);
+  const [indicatorStyle, setIndicatorStyle] = useState<IndicatorStyle>({
+    opacity: 0,
+    transform: "translateX(0)",
+    width: 0,
+  });
+
+  useEffect(() => {
+    function updateIndicator() {
+      const tabs = tabsRef.current;
+      const targetManufacturer = hoveredManufacturer ?? selectedManufacturer;
+      const button =
+        buttonRefs.current[targetManufacturer] ??
+        buttonRefs.current[selectedManufacturer];
+
+      if (!tabs || !button) {
+        return;
+      }
+
+      const tabsBounds = tabs.getBoundingClientRect();
+      const buttonBounds = button.getBoundingClientRect();
+      const x = buttonBounds.left - tabsBounds.left;
+
+      setIndicatorStyle({
+        opacity: 1,
+        transform: `translateX(${x}px)`,
+        width: buttonBounds.width,
+      });
+    }
+
+    updateIndicator();
+    window.addEventListener("resize", updateIndicator);
+
+    return () => window.removeEventListener("resize", updateIndicator);
+  }, [hoveredManufacturer, selectedManufacturer]);
 
   return (
     <div className="fleet-directory">
-      <div className="fleet-tabs" role="tablist" aria-label="Aircraft manufacturer">
+      <div
+        className="fleet-tabs"
+        onBlur={() => setHoveredManufacturer(null)}
+        onMouseLeave={() => setHoveredManufacturer(null)}
+        ref={tabsRef}
+        role="tablist"
+        aria-label="Aircraft manufacturer"
+      >
+        <span
+          aria-hidden="true"
+          className="fleet-tabs-indicator"
+          style={indicatorStyle}
+        />
         {manufacturers.map((manufacturer) => (
           <button
             aria-selected={selectedManufacturer === manufacturer.id}
@@ -98,7 +159,12 @@ export function FleetDirectory() {
               selectedManufacturer === manufacturer.id ? "active" : undefined
             }
             key={manufacturer.id}
+            onFocus={() => setHoveredManufacturer(manufacturer.id)}
+            onMouseEnter={() => setHoveredManufacturer(manufacturer.id)}
             onClick={() => setSelectedManufacturer(manufacturer.id)}
+            ref={(node) => {
+              buttonRefs.current[manufacturer.id] = node;
+            }}
             role="tab"
             type="button"
           >
@@ -109,7 +175,18 @@ export function FleetDirectory() {
 
       <div className="fleet-list" role="tabpanel">
         {fleet[selectedManufacturer].map((aircraft) => (
-          <article className="fleet-card" key={aircraft.name}>
+          <article
+            className={[
+              "fleet-card",
+              selectedManufacturer === "bombardier" ||
+              selectedManufacturer === "embraer"
+                ? "fleet-card-regional"
+                : undefined,
+            ]
+              .filter(Boolean)
+              .join(" ")}
+            key={aircraft.name}
+          >
             <div
               className={[
                 "fleet-aircraft-image",

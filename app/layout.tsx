@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Delta Virtual",
+  title: "Home",
   description:
     "Delta Virtual provides an immersive virtual airline experience for aviators, aspiring pilots, and aviation enthusiasts.",
 };

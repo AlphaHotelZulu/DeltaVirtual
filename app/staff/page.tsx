@@ -4,7 +4,7 @@ import { SiteHeader } from "../components/SiteHeader";
 import { StaffDirectory } from "./StaffDirectory";
 
 export const metadata: Metadata = {
-  title: "Staff | Delta Virtual",
+  title: "Staff",
   description: "Meet the Delta Virtual leadership and staff teams.",
 };
 

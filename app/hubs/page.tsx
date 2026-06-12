@@ -4,7 +4,7 @@ import { SiteHeader } from "../components/SiteHeader";
 import { HubsExplorer } from "./HubsExplorer";
 
 export const metadata: Metadata = {
-  title: "Hubs | Delta Virtual",
+  title: "Hubs",
   description: "Explore Delta Virtual hub cities across the United States.",
 };
 
