@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { SiteFooter } from "./components/SiteFooter";
+import { SiteHeader } from "./components/SiteHeader";
 
 const updates = [
   {
@@ -24,43 +26,10 @@ const updates = [
   },
 ];
 
-const navigation = ["Home", "Staff", "Fleet", "Hubs", "Partners"];
-
 export default function Home() {
   return (
     <main className="site-shell">
-      <header className="site-header" aria-label="Primary navigation">
-        <a className="brand" href="#" aria-label="Delta Virtual home">
-          <Image
-            src="/images/delta-virtual-logo.svg"
-            alt="Delta Virtual"
-            width={202}
-            height={51}
-            priority
-          />
-        </a>
-
-        <nav className="nav-links" aria-label="Main menu">
-          {navigation.map((item) => (
-            <a
-              className={item === "Home" ? "active" : undefined}
-              href="#"
-              key={item}
-            >
-              {item}
-            </a>
-          ))}
-        </nav>
-
-        <div className="account-actions">
-          <a className="sign-up" href="#">
-            Sign Up
-          </a>
-          <a className="button button-small" href="#">
-            Log In
-          </a>
-        </div>
-      </header>
+      <SiteHeader activePage="home" />
 
       <section className="hero" aria-label="Delta Virtual introduction">
         <div className="hero-content">
@@ -132,9 +101,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="site-footer">
-        Copyright © 2026 Delta Virtual. All rights reserved.
-      </footer>
+      <SiteFooter />
     </main>
   );
 }
