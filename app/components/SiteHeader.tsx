@@ -19,7 +19,7 @@ type SiteHeaderProps = {
 type IndicatorStyle = {
   opacity: number;
   transform: string;
-  width: string;
+  width: number;
 };
 
 export function SiteHeader({ activePage }: SiteHeaderProps) {
@@ -30,7 +30,7 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
   const [indicatorStyle, setIndicatorStyle] = useState<IndicatorStyle>({
     opacity: 0,
     transform: "translateX(0)",
-    width: "0px",
+    width: 0,
   });
 
   useEffect(() => {
@@ -45,13 +45,14 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
 
       const navBounds = nav.getBoundingClientRect();
       const linkBounds = link.getBoundingClientRect();
-      const extraWidth = 18;
-      const x = linkBounds.left - navBounds.left - extraWidth / 2;
+      const indicatorWidth = linkBounds.width + 4;
+      const x =
+        linkBounds.left - navBounds.left + linkBounds.width / 2 - indicatorWidth / 2;
 
       setIndicatorStyle({
         opacity: 1,
         transform: `translateX(${x}px)`,
-        width: `${linkBounds.width + extraWidth}px`,
+        width: indicatorWidth,
       });
     }
 
