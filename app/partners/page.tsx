@@ -15,6 +15,12 @@ export default function PartnersPage() {
 
       <section className="partners-hero" aria-label="Delta Virtual partners" />
 
+      <section className="partners-heading-section">
+        <div className="partners-content">
+          <h1>Our Partners</h1>
+        </div>
+      </section>
+
       <section className="partners-section">
         <div className="partners-content">
           <div className="partner-feature">

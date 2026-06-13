@@ -2,27 +2,39 @@ import Image from "next/image";
 import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
 
-const updates = [
+const featureCards = [
   {
-    date: "JUNE 1, 2026",
-    title: "Delta Virtual Launches New Website",
-    image: "/images/news-website-launch.png",
-    summary:
-      "Delta Virtual has launched a new website that reflects its dedication to providing users with an experience of immersive realism. This new platform aims to set a new standard in flight simulation...",
+    title: "Experienced Team",
+    body: "Our dedicated team consists of real pilots, industry experts, and professionals, allowing us to provide the best experience possible.",
+    href: "/staff",
   },
   {
-    date: "MARCH 1, 2026",
-    title: "Delta Virtual Celebrates First Anniversary",
+    title: "Comprehensive Fleet",
+    body: "Delta Virtual proudly features one of the largest fleets in the virtual airline community, with nearly every aircraft type operated by us or our partners.",
+    href: "/fleet",
+  },
+  {
+    title: "Global Connectivity",
+    body: "Our network provides greater access to an expanding global network, including a wide array of domestic and international destinations.",
+    href: "/hubs",
+  },
+];
+
+const differentiators = [
+  {
+    title: "Custom Crew Center",
+    body: "We use modern technology to provide a truly customized experience. Our state-of-the-art platform ensures every element feels as close to reality as possible.",
+    image: "/images/home/crew-center-cockpit.webp",
+  },
+  {
+    title: "Real World Operations",
+    body: "We offer a range of unique features similar to those of real-world airlines, such as a seniority based bidding process and type ratings.",
+    image: "/images/about-delta-a330.webp",
+  },
+  {
+    title: "Learn from Real Pilots",
+    body: "Our modular training program allows for us to personalize training for everyone, from enthusiasts to real world pilots.",
     image: "/images/news-anniversary.jpg",
-    summary:
-      "Delta Virtual is excited to commemorate its first anniversary, marking a year of innovation and achievement. Throughout the past year, Delta Virtual has been dedicated to providing exceptional virtual experiences...",
-  },
-  {
-    date: "JANUARY 1, 2026",
-    title: "A Message From Our CEO",
-    image: "/images/news-ceo-message.webp",
-    summary:
-      "Read a message from our CEO as we celebrate the New Year and pay tribute to the Centennial Anniversary of Delta Air Lines. This milestone marks a century of dedication to excellence...",
   },
 ];
 
@@ -31,73 +43,57 @@ export default function Home() {
     <main className="site-shell">
       <SiteHeader activePage="home" />
 
-      <section className="hero" aria-label="Delta Virtual introduction">
-        <div className="hero-content">
-          <h1>Your Partner in Virtual Aviation</h1>
-          <p>
-            Delta Virtual is the leading virtual airline, providing an immersive
-            and authentic experience to aviators, aspiring pilots, and
-            enthusiasts.
-          </p>
-        </div>
-      </section>
+      <section className="home-hero" aria-label="Delta Virtual introduction" />
 
-      <section className="about-section">
-        <div className="content-grid">
-          <div className="photo-panel about-photo" aria-hidden="true" />
-          <article className="about-copy">
-            <h2>About Us</h2>
-            <p>
-              Founded in 2022, Delta Virtual is a non-profit, 501c3
-              organization dedicated to replicating real-world airline
-              operations and fostering a deeper understanding of the aviation
-              industry. Our mission is to educate and promote the many
-              opportunities in aviation, inspiring aspiring pilots and
-              enthusiasts to explore and pursue their passion for aviation. We
-              aim to provide a realistic, immersive experience through
-              relentless innovation, creating a platform that brings virtual
-              aviation to life.
-            </p>
-            <a className="button" href="#">
-              Join Now
-            </a>
+      <section className="home-main-section">
+        <div className="home-content">
+          <article className="home-intro-card">
+            <Image
+              alt=""
+              className="home-intro-widget"
+              height={921}
+              priority
+              src="/images/home/delta-widget-cropped.png"
+              width={1012}
+            />
+            <div>
+              <p>Welcome to Delta Virtual</p>
+              <h1>Your Partner in Virtual Aviation</h1>
+            </div>
           </article>
-        </div>
-      </section>
 
-      <section className="updates-section">
-        <div className="section-heading">
-          <div>
-            <h2>Latest Updates</h2>
-            <p>
-              Keep up to date with the latest news, insights, and developments
-              from Delta Virtual and our mission to provide an immersive and
-              realistic virtual experience to everyone.
-            </p>
+          <div className="home-feature-grid" aria-label="Delta Virtual highlights">
+            {featureCards.map((card) => (
+              <article className="home-feature-card" key={card.title}>
+                <h2>{card.title}</h2>
+                <p>{card.body}</p>
+                <a href={card.href}>Learn More</a>
+              </article>
+            ))}
           </div>
-          <a className="button" href="#">
-            <span className="label-full">View All Articles</span>
-            <span className="label-short">View All</span>
-          </a>
-        </div>
 
-        <div className="updates-grid">
-          {updates.map((update) => (
-            <article className="update-card" key={update.title}>
-              <div className="update-image">
-                <Image
-                  src={update.image}
-                  alt=""
-                  fill
-                  sizes="(max-width: 700px) 100vw, (max-width: 1000px) 50vw, 33vw"
-                />
-              </div>
-              <time>{update.date}</time>
-              <h3>{update.title}</h3>
-              <p>{update.summary}</p>
-              <a href="#">Read More</a>
-            </article>
-          ))}
+          <section className="home-sets-section" aria-labelledby="sets-heading">
+            <h2 id="sets-heading">The Delta Difference</h2>
+
+            <div className="home-set-list">
+              {differentiators.map((item) => (
+                <article className="home-set-card" key={item.title}>
+                  <div className="home-set-image">
+                    <Image
+                      alt=""
+                      fill
+                      sizes="(max-width: 700px) 100vw, 340px"
+                      src={item.image}
+                    />
+                  </div>
+                  <div className="home-set-copy">
+                    <h3>{item.title}</h3>
+                    <p>{item.body}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
         </div>
       </section>
 

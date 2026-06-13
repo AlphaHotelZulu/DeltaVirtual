@@ -1,28 +1,26 @@
-"use client";
-
 import Image from "next/image";
-import { useState } from "react";
 
 const leadershipTeam = [
   {
-    role: "President & CEO",
+    role: "President",
     name: "Andrew Zhao",
-    bio: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Amet consectetur adipiscing elit quisque faucibus ex sapien. Quisque faucibus ex sapien vitae pellentesque sem placerat. Vitae pellentesque sem placerat in id cursus mi.",
+    title: "Chief Executive Officer",
+    bio: "Andrew is a Instrument Flight Instructor (CFII) based in Washington D.C. As CEO, Andrew leads the mission in building the most premier virtual airline in the world.",
+    contactLabel: "Contact Andrew",
   },
   {
-    role: "Vice President, Operations",
+    role: "Vice President",
     name: "Kai Glidden",
-    bio: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Amet consectetur adipiscing elit quisque faucibus ex sapien. Quisque faucibus ex sapien vitae pellentesque sem placerat. Vitae pellentesque sem placerat in id cursus mi.",
+    title: "Chief Operations Officer",
+    bio: "Kai is a Instrument Flight Instructor (CFII) based in Maine. Kai is responsible for the daily operations and strategic planning for the organization.",
+    contactLabel: "Contact Kai",
   },
   {
-    role: "Vice President, Technology",
+    role: "Vice President",
     name: "Reid Cao",
-    bio: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Amet consectetur adipiscing elit quisque faucibus ex sapien. Quisque faucibus ex sapien vitae pellentesque sem placerat. Vitae pellentesque sem placerat in id cursus mi.",
-  },
-  {
-    role: "Vice President, Flight Operations",
-    name: "Daniel Mu",
-    bio: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Amet consectetur adipiscing elit quisque faucibus ex sapien. Quisque faucibus ex sapien vitae pellentesque sem placerat. Vitae pellentesque sem placerat in id cursus mi.",
+    title: "Chief Technology Officer",
+    bio: "Reid is a Physics Major based in the United Kingdom. Reid oversees the platform Delta Virtual is built upon while continuing to innovate and improve.",
+    contactLabel: "Contact Reid",
   },
 ];
 
@@ -37,69 +35,64 @@ const staffTeam = [
   { role: "SLC Chief Pilot", name: "Vacant", email: "slc@dlva.org" },
 ];
 
-export function StaffDirectory() {
-  const [selectedTeam, setSelectedTeam] = useState<"leadership" | "staff">(
-    "leadership",
-  );
-
+function PlaceholderAvatar({ size }: { size: "large" | "small" }) {
   return (
-    <div className="team-directory">
-      <div className="team-tabs" role="tablist" aria-label="Team category">
-        <button
-          aria-selected={selectedTeam === "leadership"}
-          className={selectedTeam === "leadership" ? "active" : undefined}
-          onClick={() => setSelectedTeam("leadership")}
-          role="tab"
-          type="button"
-        >
-          Leadership Team
-        </button>
-        <button
-          aria-selected={selectedTeam === "staff"}
-          className={selectedTeam === "staff" ? "active" : undefined}
-          onClick={() => setSelectedTeam("staff")}
-          role="tab"
-          type="button"
-        >
-          Staff Team
-        </button>
-      </div>
+    <div className={`staff-avatar staff-avatar-${size}`}>
+      <Image
+        alt=""
+        height={640}
+        src="/images/staff/profile-placeholder.png"
+        width={640}
+      />
+    </div>
+  );
+}
 
-      {selectedTeam === "leadership" ? (
-        <div className="leadership-list" role="tabpanel">
+export function StaffDirectory() {
+  return (
+    <div className="staff-directory">
+      <section className="staff-group" aria-labelledby="leadership-heading">
+        <h1 className="staff-section-title" id="leadership-heading">
+          Leadership Team
+        </h1>
+
+        <div className="leadership-card-grid">
           {leadershipTeam.map((person) => (
-            <article className="leader-row" key={person.name}>
-              <div className="leader-photo">
-                <Image
-                  src="/images/staff/blank-profile-picture.png"
-                  alt=""
-                  width={640}
-                  height={640}
-                />
-              </div>
-              <div className="leader-copy">
-                <p className="team-role">{person.role}</p>
-                <h2>{person.name}</h2>
-                <p>{person.bio}</p>
-              </div>
+            <article className="leadership-card" key={person.name}>
+              <PlaceholderAvatar size="large" />
+              <p className="staff-card-role">{person.role}</p>
+              <h2>{person.name}</h2>
+              <p className="staff-card-title">{person.title}</p>
+              <p className="staff-card-bio">{person.bio}</p>
+              <a className="staff-contact-link" href="#">
+                {person.contactLabel}
+              </a>
             </article>
           ))}
         </div>
-      ) : (
-        <div className="staff-card-grid" role="tabpanel">
+      </section>
+
+      <section
+        className="staff-group staff-group-compact"
+        aria-labelledby="staff-heading"
+      >
+        <h1 className="staff-section-title" id="staff-heading">
+          Staff Team
+        </h1>
+
+        <div className="staff-team-grid">
           {staffTeam.map((person) => (
-            <article className="staff-card" key={person.role}>
-              <div>
-                <p className="team-role">{person.role}</p>
-                <h2>{person.name}</h2>
-              </div>
-              <a href={`mailto:${person.email}`}>
+            <article className="staff-team-card" key={person.role}>
+              <PlaceholderAvatar size="small" />
+              <p className="staff-card-role">{person.role}</p>
+              <h2>{person.name}</h2>
+              <a className="staff-email-link" href={`mailto:${person.email}`}>
                 {person.email} <span aria-hidden="true">&#9993;</span>
               </a>
             </article>
           ))}
         </div>
-      )}
+      </section>
     </div>
   );
 }

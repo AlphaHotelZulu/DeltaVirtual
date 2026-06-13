@@ -17,7 +17,6 @@ export default function StaffPage() {
 
       <section className="staff-section">
         <div className="staff-content">
-          <h1>Meet the Team</h1>
           <StaffDirectory />
         </div>
       </section>
