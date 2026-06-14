@@ -1332,6 +1332,13 @@ a {
     margin-left: auto;
   }
 
+  .mobile-menu {
+    top: var(--header-height);
+    right: 0;
+    left: 0;
+    border-radius: 0;
+  }
+
   .content-grid {
     grid-template-columns: 1fr;
   }
@@ -1418,7 +1425,6 @@ a {
   }
 
   .mobile-menu {
-    top: calc(var(--header-height) + 8px);
     padding: 14px;
   }
 
