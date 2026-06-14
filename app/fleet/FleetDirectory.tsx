@@ -92,6 +92,7 @@ const fleet: Record<Manufacturer, Aircraft[]> = {
 
 export function FleetDirectory() {
   const tabsRef = useRef<HTMLDivElement | null>(null);
+  const tabsAnimationRef = useRef<number | null>(null);
   const buttonRefs = useRef<Record<Manufacturer, HTMLButtonElement | null>>({
     airbus: null,
     boeing: null,
@@ -120,57 +121,125 @@ export function FleetDirectory() {
         return;
       }
 
-      const tabsBounds = tabs.getBoundingClientRect();
-      const buttonBounds = button.getBoundingClientRect();
-      const x = buttonBounds.left - tabsBounds.left;
-
       setIndicatorStyle({
         opacity: 1,
-        transform: `translateX(${x}px)`,
-        width: buttonBounds.width,
+        transform: `translateX(${button.offsetLeft}px)`,
+        width: button.offsetWidth,
       });
     }
 
+    const tabsElement = tabsRef.current;
+
     updateIndicator();
     window.addEventListener("resize", updateIndicator);
+    tabsElement?.addEventListener("scroll", updateIndicator, {
+      passive: true,
+    });
 
-    return () => window.removeEventListener("resize", updateIndicator);
+    return () => {
+      window.removeEventListener("resize", updateIndicator);
+      tabsElement?.removeEventListener("scroll", updateIndicator);
+    };
   }, [hoveredManufacturer, selectedManufacturer]);
+
+  useEffect(() => {
+    return () => {
+      if (tabsAnimationRef.current !== null) {
+        window.cancelAnimationFrame(tabsAnimationRef.current);
+      }
+    };
+  }, []);
+
+  function scrollTabs(direction: "left" | "right") {
+    const tabs = tabsRef.current;
+
+    if (!tabs) {
+      return;
+    }
+
+    if (tabsAnimationRef.current !== null) {
+      window.cancelAnimationFrame(tabsAnimationRef.current);
+    }
+
+    const startScrollLeft = tabs.scrollLeft;
+    const maxScrollLeft = tabs.scrollWidth - tabs.clientWidth;
+    const nextScrollLeft = Math.min(
+      maxScrollLeft,
+      Math.max(0, startScrollLeft + (direction === "left" ? -156 : 156)),
+    );
+    const distance = nextScrollLeft - startScrollLeft;
+    const duration = 360;
+    let animationStart: number | null = null;
+
+    function step(timestamp: number) {
+      if (animationStart === null) {
+        animationStart = timestamp;
+      }
+
+      const progress = Math.min(1, (timestamp - animationStart) / duration);
+      const easedProgress = 1 - Math.pow(1 - progress, 3);
+
+      tabs.scrollLeft = startScrollLeft + distance * easedProgress;
+
+      if (progress < 1) {
+        tabsAnimationRef.current = window.requestAnimationFrame(step);
+      } else {
+        tabs.scrollLeft = nextScrollLeft;
+        tabsAnimationRef.current = null;
+      }
+    }
+
+    tabsAnimationRef.current = window.requestAnimationFrame(step);
+  }
 
   return (
     <div className="fleet-directory">
-      <div
-        className="fleet-tabs"
-        onBlur={() => setHoveredManufacturer(null)}
-        onMouseLeave={() => setHoveredManufacturer(null)}
-        ref={tabsRef}
-        role="tablist"
-        aria-label="Aircraft manufacturer"
-      >
-        <span
-          aria-hidden="true"
-          className="fleet-tabs-indicator"
-          style={indicatorStyle}
+      <div className="fleet-tabs-shell">
+        <button
+          aria-label="Scroll aircraft manufacturers left"
+          className="fleet-tabs-arrow left"
+          onClick={() => scrollTabs("left")}
+          type="button"
         />
-        {manufacturers.map((manufacturer) => (
-          <button
-            aria-selected={selectedManufacturer === manufacturer.id}
-            className={
-              selectedManufacturer === manufacturer.id ? "active" : undefined
-            }
-            key={manufacturer.id}
-            onFocus={() => setHoveredManufacturer(manufacturer.id)}
-            onMouseEnter={() => setHoveredManufacturer(manufacturer.id)}
-            onClick={() => setSelectedManufacturer(manufacturer.id)}
-            ref={(node) => {
-              buttonRefs.current[manufacturer.id] = node;
-            }}
-            role="tab"
-            type="button"
-          >
-            {manufacturer.label}
-          </button>
-        ))}
+        <div
+          className="fleet-tabs"
+          onBlur={() => setHoveredManufacturer(null)}
+          onMouseLeave={() => setHoveredManufacturer(null)}
+          ref={tabsRef}
+          role="tablist"
+          aria-label="Aircraft manufacturer"
+        >
+          <span
+            aria-hidden="true"
+            className="fleet-tabs-indicator"
+            style={indicatorStyle}
+          />
+          {manufacturers.map((manufacturer) => (
+            <button
+              aria-selected={selectedManufacturer === manufacturer.id}
+              className={
+                selectedManufacturer === manufacturer.id ? "active" : undefined
+              }
+              key={manufacturer.id}
+              onFocus={() => setHoveredManufacturer(manufacturer.id)}
+              onMouseEnter={() => setHoveredManufacturer(manufacturer.id)}
+              onClick={() => setSelectedManufacturer(manufacturer.id)}
+              ref={(node) => {
+                buttonRefs.current[manufacturer.id] = node;
+              }}
+              role="tab"
+              type="button"
+            >
+              {manufacturer.label}
+            </button>
+          ))}
+        </div>
+        <button
+          aria-label="Scroll aircraft manufacturers right"
+          className="fleet-tabs-arrow right"
+          onClick={() => scrollTabs("right")}
+          type="button"
+        />
       </div>
 
       <div className="fleet-list" role="tabpanel">
