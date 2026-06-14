@@ -25,6 +25,7 @@ type IndicatorStyle = {
 export function SiteHeader({ activePage }: SiteHeaderProps) {
   const navRef = useRef<HTMLElement | null>(null);
   const linkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [hoveredPage, setHoveredPage] =
     useState<SiteHeaderProps["activePage"] | null>(null);
   const [indicatorStyle, setIndicatorStyle] = useState<IndicatorStyle>({
@@ -114,6 +115,48 @@ export function SiteHeader({ activePage }: SiteHeaderProps) {
         <a className="button button-small" href="https://crew.dlva.org">
           Log In
         </a>
+      </div>
+
+      <button
+        aria-controls="mobile-menu"
+        aria-expanded={isMenuOpen}
+        aria-label="Toggle navigation menu"
+        className="mobile-menu-toggle"
+        onClick={() => setIsMenuOpen((open) => !open)}
+        type="button"
+      >
+        <span aria-hidden="true" />
+        <span aria-hidden="true" />
+        <span aria-hidden="true" />
+      </button>
+
+      <div
+        className={`mobile-menu${isMenuOpen ? " open" : ""}`}
+        id="mobile-menu"
+      >
+        <nav aria-label="Mobile menu">
+          {navigation.map((item) => {
+            const page =
+              item.label.toLowerCase() as SiteHeaderProps["activePage"];
+
+            return (
+              <Link
+                className={page === activePage ? "active" : undefined}
+                href={item.href}
+                key={item.label}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
+        </nav>
+        <div className="mobile-account-actions">
+          <a href="https://apply.dlva.org">Sign Up</a>
+          <a className="button button-small" href="https://crew.dlva.org">
+            Log In
+          </a>
+        </div>
       </div>
     </header>
   );
