@@ -686,13 +686,13 @@ a {
 .fleet-hero {
   background:
     linear-gradient(rgba(4, 28, 44, 0.78), rgba(4, 28, 44, 0.78)),
-    url("/images/fleet/fleet-hero-atl.png") center 48% / cover;
+    url("/images/fleet/fleet-hero-atl-edited.png") center 48% / cover;
 }
 
 .hubs-hero {
   background:
     linear-gradient(rgba(4, 28, 44, 0.72), rgba(4, 28, 44, 0.72)),
-    url("/images/hubs-hero-atl.png") center 50% / cover;
+    url("/images/hubs-hero-atl-edited.png") center 50% / cover;
 }
 
 .partners-hero {
