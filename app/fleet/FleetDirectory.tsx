@@ -156,13 +156,14 @@ export function FleetDirectory() {
     if (!tabs) {
       return;
     }
+    const tabsElement: HTMLDivElement = tabs;
 
     if (tabsAnimationRef.current !== null) {
       window.cancelAnimationFrame(tabsAnimationRef.current);
     }
 
-    const startScrollLeft = tabs.scrollLeft;
-    const maxScrollLeft = tabs.scrollWidth - tabs.clientWidth;
+    const startScrollLeft = tabsElement.scrollLeft;
+    const maxScrollLeft = tabsElement.scrollWidth - tabsElement.clientWidth;
     const nextScrollLeft = Math.min(
       maxScrollLeft,
       Math.max(0, startScrollLeft + (direction === "left" ? -156 : 156)),
@@ -179,12 +180,12 @@ export function FleetDirectory() {
       const progress = Math.min(1, (timestamp - animationStart) / duration);
       const easedProgress = 1 - Math.pow(1 - progress, 3);
 
-      tabs.scrollLeft = startScrollLeft + distance * easedProgress;
+      tabsElement.scrollLeft = startScrollLeft + distance * easedProgress;
 
       if (progress < 1) {
         tabsAnimationRef.current = window.requestAnimationFrame(step);
       } else {
-        tabs.scrollLeft = nextScrollLeft;
+        tabsElement.scrollLeft = nextScrollLeft;
         tabsAnimationRef.current = null;
       }
     }
