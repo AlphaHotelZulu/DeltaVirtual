@@ -5,7 +5,11 @@ import { StaffDirectory } from "./StaffDirectory";
 
 export const metadata: Metadata = {
   title: "Staff",
-  description: "Meet the Delta Virtual leadership and staff teams.",
+  description:
+    "Meet the leadership and staff behind Delta Virtual (DLVA), including its executive team and hub chief pilots.",
+  alternates: {
+    canonical: "/staff",
+  },
 };
 
 export default function StaffPage() {

@@ -60,11 +60,13 @@
 }
 
 html {
+  min-height: 100%;
   background: var(--navy);
   scroll-behavior: smooth;
 }
 
 body {
+  min-height: 100%;
   margin: 0;
   background: var(--background);
   color: var(--foreground);
@@ -79,8 +81,15 @@ a {
 }
 
 .site-shell {
+  display: flex;
   min-height: 100vh;
+  min-height: 100dvh;
+  flex-direction: column;
   overflow: hidden;
+  background: var(--page-section-bg);
+}
+
+.partners-shell {
   background: #ffffff;
 }
 
@@ -113,6 +122,7 @@ a {
   height: auto;
   max-height: 36px;
   object-fit: contain;
+  object-position: left center;
 }
 
 .nav-links {
@@ -625,8 +635,10 @@ a {
 .site-footer {
   display: flex;
   min-height: 96px;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
+  margin-top: auto;
   padding: 22px var(--site-gutter);
   background: var(--navy-deep);
   color: #ffffff;
@@ -1310,13 +1322,118 @@ a {
   text-decoration: none;
 }
 
+@media (max-width: 1100px) {
+  .fleet-tabs {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-bottom: 0;
+    background: linear-gradient(#cfcfcf, #cfcfcf) left bottom / 100% 2px
+      no-repeat;
+    padding: 0 34px;
+    scroll-padding: 34px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .fleet-tabs-shell::before,
+  .fleet-tabs-shell::after {
+    position: absolute;
+    top: 0;
+    z-index: 3;
+    width: 54px;
+    height: 56px;
+    pointer-events: none;
+    content: "";
+  }
+
+  .fleet-tabs-shell::before {
+    left: 0;
+    background: linear-gradient(
+      90deg,
+      var(--page-section-bg) 0%,
+      var(--page-section-bg) 36%,
+      rgba(248, 248, 248, 0) 100%
+    );
+  }
+
+  .fleet-tabs-shell::after {
+    right: 0;
+    background: linear-gradient(
+      270deg,
+      var(--page-section-bg) 0%,
+      var(--page-section-bg) 36%,
+      rgba(248, 248, 248, 0) 100%
+    );
+  }
+
+  .fleet-tabs-arrow {
+    position: absolute;
+    top: 9px;
+    z-index: 4;
+    display: block;
+    width: 40px;
+    height: 40px;
+    min-height: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .fleet-tabs-arrow::before {
+    position: absolute;
+    top: 13px;
+    left: 13px;
+    width: 13px;
+    height: 13px;
+    border-top: 2px solid #c01933;
+    border-right: 2px solid #c01933;
+    border-radius: 1px;
+    content: "";
+  }
+
+  .fleet-tabs-arrow.left {
+    left: -2px;
+  }
+
+  .fleet-tabs-arrow.left::before {
+    transform: rotate(-135deg);
+  }
+
+  .fleet-tabs-arrow.right {
+    right: -2px;
+  }
+
+  .fleet-tabs-arrow.right::before {
+    transform: rotate(45deg);
+  }
+
+  .fleet-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .fleet-tabs button {
+    min-width: clamp(180px, 23vw, 240px);
+    flex: 0 0 auto;
+    padding: 0 18px;
+    white-space: nowrap;
+  }
+
+  .fleet-tabs-indicator {
+    bottom: 0;
+    height: 2px;
+    z-index: 5;
+  }
+}
+
 @media (max-width: 1000px) {
   .site-header {
     gap: 18px;
   }
 
   .brand {
-    width: 158px;
+    width: 140px;
   }
 
   .nav-links {
@@ -1353,12 +1470,14 @@ a {
 
   .home-feature-grid {
     grid-template-columns: 1fr;
-    justify-items: center;
   }
 
   .home-feature-card {
-    width: min(100%, 520px);
-    min-height: 240px;
+    min-height: 0;
+  }
+
+  .home-feature-card a {
+    margin-top: 24px;
   }
 
   .home-set-card {
@@ -1385,10 +1504,6 @@ a {
   }
 
   .hub-card-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .fleet-tabs {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -1504,6 +1619,10 @@ a {
     font-size: 17px;
   }
 
+  .fleet-tabs button {
+    min-width: 156px;
+  }
+
   .leader-row {
     grid-template-columns: 1fr;
     gap: 22px;
@@ -1537,109 +1656,6 @@ a {
 
   .leadership-card {
     min-height: 0;
-  }
-
-  .fleet-tabs {
-    display: flex;
-    overflow-x: auto;
-    overflow-y: hidden;
-    border-bottom: 0;
-    background: linear-gradient(#cfcfcf, #cfcfcf) left bottom / 100% 2px
-      no-repeat;
-    padding: 0 34px;
-    scroll-padding: 34px;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .fleet-tabs-shell::before,
-  .fleet-tabs-shell::after {
-    position: absolute;
-    top: 0;
-    z-index: 3;
-    width: 54px;
-    height: 56px;
-    pointer-events: none;
-    content: "";
-  }
-
-  .fleet-tabs-shell::before {
-    left: 0;
-    background: linear-gradient(
-      90deg,
-      var(--page-section-bg) 0%,
-      var(--page-section-bg) 36%,
-      rgba(248, 248, 248, 0) 100%
-    );
-  }
-
-  .fleet-tabs-shell::after {
-    right: 0;
-    background: linear-gradient(
-      270deg,
-      var(--page-section-bg) 0%,
-      var(--page-section-bg) 36%,
-      rgba(248, 248, 248, 0) 100%
-    );
-  }
-
-  .fleet-tabs-arrow {
-    position: absolute;
-    top: 9px;
-    z-index: 4;
-    display: block;
-    width: 40px;
-    height: 40px;
-    min-height: 0;
-    border: 0;
-    background: transparent;
-    cursor: pointer;
-    padding: 0;
-  }
-
-  .fleet-tabs-arrow::before {
-    position: absolute;
-    top: 13px;
-    left: 13px;
-    width: 13px;
-    height: 13px;
-    border-top: 2px solid #c01933;
-    border-right: 2px solid #c01933;
-    border-radius: 1px;
-    content: "";
-  }
-
-  .fleet-tabs-arrow.left {
-    left: -2px;
-  }
-
-  .fleet-tabs-arrow.left::before {
-    transform: rotate(-135deg);
-  }
-
-  .fleet-tabs-arrow.right {
-    right: -2px;
-  }
-
-  .fleet-tabs-arrow.right::before {
-    transform: rotate(45deg);
-  }
-
-  .fleet-tabs::-webkit-scrollbar {
-    display: none;
-  }
-
-  .fleet-tabs button {
-    min-width: 156px;
-    flex: 0 0 auto;
-    padding: 0 18px;
-    white-space: nowrap;
-  }
-
-  .fleet-tabs-indicator {
-    bottom: 0;
-    height: 2px;
-    z-index: 5;
   }
 
   .fleet-card {

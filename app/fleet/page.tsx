@@ -5,7 +5,11 @@ import { FleetDirectory } from "./FleetDirectory";
 
 export const metadata: Metadata = {
   title: "Fleet",
-  description: "Explore Delta Virtual's Airbus, Boeing, Bombardier, and Embraer fleet.",
+  description:
+    "Explore the Delta Virtual (DLVA) fleet of Airbus, Boeing, Bombardier, and Embraer aircraft available for virtual airline operations.",
+  alternates: {
+    canonical: "/fleet",
+  },
 };
 
 export default function FleetPage() {

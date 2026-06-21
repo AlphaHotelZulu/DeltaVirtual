@@ -2,6 +2,32 @@ import Image from "next/image";
 import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
 
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://dlva.org/#organization",
+      name: "Delta Virtual",
+      alternateName: "DLVA",
+      url: "https://dlva.org",
+      logo: "https://dlva.org/images/delta-virtual-logo.svg",
+      description:
+        "A virtual airline community offering realistic flight simulation operations, an extensive fleet, and major U.S. hubs.",
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://dlva.org/#website",
+      name: "Delta Virtual",
+      alternateName: "DLVA",
+      url: "https://dlva.org",
+      publisher: {
+        "@id": "https://dlva.org/#organization",
+      },
+    },
+  ],
+};
+
 const featureCards = [
   {
     title: "Experienced Team",
@@ -41,6 +67,12 @@ const differentiators = [
 export default function Home() {
   return (
     <main className="site-shell">
+      <script
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(websiteSchema).replace(/</g, "\\u003c"),
+        }}
+        type="application/ld+json"
+      />
       <SiteHeader activePage="home" />
 
       <section className="home-hero" aria-label="Delta Virtual introduction" />

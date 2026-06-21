@@ -5,12 +5,16 @@ import { SiteHeader } from "../components/SiteHeader";
 
 export const metadata: Metadata = {
   title: "Partners",
-  description: "Visit Delta Virtual's virtual aviation partners.",
+  description:
+    "Discover Delta Virtual (DLVA) partners supporting a connected and realistic virtual aviation experience.",
+  alternates: {
+    canonical: "/partners",
+  },
 };
 
 export default function PartnersPage() {
   return (
-    <main className="site-shell">
+    <main className="site-shell partners-shell">
       <SiteHeader activePage="partners" />
 
       <section className="partners-hero" aria-label="Delta Virtual partners" />

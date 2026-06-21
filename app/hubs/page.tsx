@@ -5,7 +5,11 @@ import { HubsExplorer } from "./HubsExplorer";
 
 export const metadata: Metadata = {
   title: "Hubs",
-  description: "Explore Delta Virtual hub cities across the United States.",
+  description:
+    "Explore Delta Virtual (DLVA) hub cities across the United States through an interactive virtual airline network map.",
+  alternates: {
+    canonical: "/hubs",
+  },
 };
 
 export default function HubsPage() {
