@@ -50,17 +50,17 @@ const differentiators = [
   {
     title: "Custom Crew Center",
     body: "We use modern technology to provide a truly customized experience. Our state-of-the-art platform ensures every element feels as close to reality as possible.",
-    image: "/images/home/crew-center-cockpit.webp",
+    image: "/images/home/about-1.webp",
   },
   {
     title: "Real World Operations",
     body: "We offer a range of unique features similar to those of real-world airlines, such as a seniority based bidding process and type ratings.",
-    image: "/images/about-delta-a330.webp",
+    image: "/images/home/about-2.webp",
   },
   {
     title: "Learn from Real Pilots",
     body: "Our modular training program allows for us to personalize training for everyone, from enthusiasts to real world pilots.",
-    image: "/images/news-anniversary.jpg",
+    image: "/images/home/about-3.webp",
   },
 ];
 
@@ -85,7 +85,7 @@ export default function Home() {
               className="home-intro-widget"
               height={921}
               priority
-              src="/images/home/delta-widget-cropped.png"
+              src="/images/home/delta-widget.png"
               width={1012}
             />
             <div>
