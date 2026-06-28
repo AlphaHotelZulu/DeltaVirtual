@@ -147,7 +147,7 @@ a {
 
 .nav-indicator {
   position: absolute;
-  top: calc(50% + 13px);
+  top: calc(50% + 16px);
   left: 0;
   width: 0;
   height: 2px;

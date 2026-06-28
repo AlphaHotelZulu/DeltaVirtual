@@ -1,28 +1,40 @@
 import Image from "next/image";
 import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
+import {
+  SITE_ALTERNATE_NAMES,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_URL,
+} from "./site";
 
 const websiteSchema = {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://dlva.org/#organization",
-      name: "Delta Virtual",
-      alternateName: "DLVA",
-      url: "https://dlva.org",
-      logo: "https://dlva.org/images/delta-virtual-logo.svg",
-      description:
-        "A virtual airline community offering realistic flight simulation operations, an extensive fleet, and major U.S. hubs.",
+      "@id": `${SITE_URL}/#organization`,
+      name: SITE_NAME,
+      alternateName: SITE_ALTERNATE_NAMES,
+      url: `${SITE_URL}/`,
+      foundingDate: "2025",
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/icon.png`,
+        contentUrl: `${SITE_URL}/icon.png`,
+        width: 512,
+        height: 512,
+      },
+      description: SITE_DESCRIPTION,
     },
     {
       "@type": "WebSite",
-      "@id": "https://dlva.org/#website",
-      name: "Delta Virtual",
-      alternateName: "DLVA",
-      url: "https://dlva.org",
+      "@id": `${SITE_URL}/#website`,
+      name: SITE_NAME,
+      alternateName: SITE_ALTERNATE_NAMES,
+      url: `${SITE_URL}/`,
       publisher: {
-        "@id": "https://dlva.org/#organization",
+        "@id": `${SITE_URL}/#organization`,
       },
     },
   ],
@@ -89,7 +101,7 @@ export default function Home() {
               width={1012}
             />
             <div>
-              <p>Welcome to Delta Virtual</p>
+              <p>Welcome to Delta Virtual Air Lines</p>
               <h1>Your Partner in Virtual Aviation</h1>
             </div>
           </article>

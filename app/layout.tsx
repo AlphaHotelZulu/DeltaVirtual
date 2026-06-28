@@ -1,28 +1,31 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "./site";
 
-const siteUrl = new URL(
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://dlva.org",
-);
+const siteUrl = new URL(SITE_URL);
 
 export const metadata: Metadata = {
   metadataBase: siteUrl,
-  title: "Delta Virtual",
-  description:
-    "Delta Virtual (DLVA) is a virtual airline for flight simulation enthusiasts, offering realistic operations, an extensive fleet, major U.S. hubs, and a welcoming aviation community.",
-  applicationName: "Delta Virtual",
+  title: {
+    default: "Delta Virtual Air Lines | DLVA",
+    template: "%s | Delta Virtual",
+  },
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
   keywords: [
     "Delta Virtual",
     "DLVA",
+    "Delta Virtual Air Lines",
     "virtual airline",
+    "non-profit virtual airline",
     "flight simulation",
     "flight simulator",
     "virtual aviation",
     "VATSIM",
   ],
-  authors: [{ name: "Delta Virtual", url: siteUrl }],
-  creator: "Delta Virtual",
-  publisher: "Delta Virtual",
+  authors: [{ name: SITE_NAME, url: siteUrl }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
   category: "Virtual Aviation",
   alternates: {
     canonical: "/",
@@ -41,10 +44,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "/",
-    siteName: "Delta Virtual",
-    title: "Delta Virtual",
-    description:
-      "Discover Delta Virtual (DLVA), a realistic virtual airline experience for flight simulation enthusiasts.",
+    siteName: SITE_NAME,
+    title: "Delta Virtual Air Lines | DLVA",
+    description: SITE_DESCRIPTION,
     images: [
       {
         url: "/images/home/home-hero.png",
@@ -57,9 +59,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Delta Virtual",
-    description:
-      "Discover Delta Virtual (DLVA), a realistic virtual airline experience for flight simulation enthusiasts.",
+    title: "Delta Virtual Air Lines | DLVA",
+    description: SITE_DESCRIPTION,
     images: ["/images/home/home-hero.png"],
   },
 };

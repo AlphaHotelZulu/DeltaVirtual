@@ -1,16 +1,14 @@
 import Image from "next/image";
-import type { Metadata } from "next";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
+import { createPageMetadata } from "../site";
 
-export const metadata: Metadata = {
-  title: "Partners",
+export const metadata = createPageMetadata({
+  title: "Aviation Partners",
   description:
     "Discover Delta Virtual (DLVA) partners supporting a connected and realistic virtual aviation experience.",
-  alternates: {
-    canonical: "/partners",
-  },
-};
+  path: "/partners",
+});
 
 export default function PartnersPage() {
   return (
