@@ -1,16 +1,14 @@
-import type { Metadata } from "next";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
+import { createPageMetadata } from "../site";
 import { HubsExplorer } from "./HubsExplorer";
 
-export const metadata: Metadata = {
-  title: "Hubs",
+export const metadata = createPageMetadata({
+  title: "Virtual Airline Hubs",
   description:
     "Explore Delta Virtual (DLVA) hub cities across the United States through an interactive virtual airline network map.",
-  alternates: {
-    canonical: "/hubs",
-  },
-};
+  path: "/hubs",
+});
 
 export default function HubsPage() {
   return (

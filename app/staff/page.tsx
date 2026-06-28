@@ -1,16 +1,14 @@
-import type { Metadata } from "next";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
+import { createPageMetadata } from "../site";
 import { StaffDirectory } from "./StaffDirectory";
 
-export const metadata: Metadata = {
-  title: "Staff",
+export const metadata = createPageMetadata({
+  title: "Staff & Leadership",
   description:
     "Meet the leadership and staff behind Delta Virtual (DLVA), including its executive team and hub chief pilots.",
-  alternates: {
-    canonical: "/staff",
-  },
-};
+  path: "/staff",
+});
 
 export default function StaffPage() {
   return (
