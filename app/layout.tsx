@@ -47,7 +47,7 @@ export const metadata: Metadata = {
       "Discover Delta Virtual (DLVA), a realistic virtual airline experience for flight simulation enthusiasts.",
     images: [
       {
-        url: "/images/home/dal100y-hero.png",
+        url: "/images/home/home-hero.png",
         width: 5120,
         height: 2880,
         alt: "Delta Virtual aircraft approaching an airport",
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     title: "Delta Virtual",
     description:
       "Discover Delta Virtual (DLVA), a realistic virtual airline experience for flight simulation enthusiasts.",
-    images: ["/images/home/dal100y-hero.png"],
+    images: ["/images/home/home-hero.png"],
   },
 };
 

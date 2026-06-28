@@ -42,7 +42,7 @@
     clamp(20px, 4vw, 40px),
     calc((100vw - var(--content-width)) / 2)
   );
-  --header-height: 72px;
+  --header-height: 80px;
   --body-text-size: clamp(14px, 0.92vw, 18px);
   --heading-text-size: clamp(30px, 3vw, 46px);
   --feature-heading-size: clamp(30px, 3.4vw, 54px);
@@ -147,7 +147,7 @@ a {
 
 .nav-indicator {
   position: absolute;
-  top: calc(50% + 18px);
+  top: calc(50% + 13px);
   left: 0;
   width: 0;
   height: 2px;
@@ -294,7 +294,7 @@ a {
   padding-top: var(--header-height);
   background:
     linear-gradient(rgba(4, 28, 44, 0.5), rgba(4, 28, 44, 0.58)),
-    url("/images/home/dal100y-hero.png") center 54% / cover;
+    url("/images/home/home-hero.png") center 54% / cover;
 }
 
 .home-main-section {
@@ -465,7 +465,7 @@ a {
   background:
     linear-gradient(90deg, rgba(5, 28, 40, 0.56), rgba(5, 28, 40, 0.2)),
     linear-gradient(180deg, rgba(4, 31, 45, 0.2), rgba(4, 31, 45, 0.4)),
-    url("/images/hero-delta-a330.webp") center 38% / cover;
+    url("/images/home/home-hero.png") center 38% / cover;
   color: #ffffff;
 }
 
@@ -521,7 +521,7 @@ a {
 .about-photo {
   background:
     linear-gradient(rgba(4, 31, 45, 0.31), rgba(4, 31, 45, 0.38)),
-    url("/images/about-delta-a330.webp") 38% center / cover;
+    url("/images/home/about-2.webp") 38% center / cover;
 }
 
 .about-copy {
@@ -634,7 +634,7 @@ a {
 
 .site-footer {
   display: flex;
-  min-height: 96px;
+  min-height: 80px;
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
@@ -698,13 +698,13 @@ a {
 .fleet-hero {
   background:
     linear-gradient(rgba(4, 28, 44, 0.78), rgba(4, 28, 44, 0.78)),
-    url("/images/fleet/fleet-hero-atl-edited.png") center 48% / cover;
+    url("/images/fleet/fleet-hero.png") center 48% / cover;
 }
 
 .hubs-hero {
   background:
     linear-gradient(rgba(4, 28, 44, 0.72), rgba(4, 28, 44, 0.72)),
-    url("/images/hubs-hero-atl-edited.png") center 50% / cover;
+    url("/images/hubs/hubs-hero.png") center 50% / cover;
 }
 
 .partners-hero {
@@ -1526,7 +1526,7 @@ a {
 
 @media (max-width: 700px) {
   .site-header {
-    --header-height: 66px;
+    --header-height: 70px;
     height: var(--header-height);
   }
 
