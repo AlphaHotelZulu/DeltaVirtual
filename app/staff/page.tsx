@@ -4,7 +4,7 @@ import { createPageMetadata } from "../site";
 import { StaffDirectory } from "./StaffDirectory";
 
 export const metadata = createPageMetadata({
-  title: "Staff & Leadership",
+  title: "Staff",
   description:
     "Meet the leadership and staff behind Delta Virtual (DLVA), including its executive team and hub chief pilots.",
   path: "/staff",

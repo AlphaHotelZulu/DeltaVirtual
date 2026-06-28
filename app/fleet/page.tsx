@@ -4,7 +4,7 @@ import { createPageMetadata } from "../site";
 import { FleetDirectory } from "./FleetDirectory";
 
 export const metadata = createPageMetadata({
-  title: "Virtual Airline Fleet",
+  title: "Fleet",
   description:
     "Explore the Delta Virtual (DLVA) fleet of Airbus, Boeing, Bombardier, and Embraer aircraft available for virtual airline operations.",
   path: "/fleet",

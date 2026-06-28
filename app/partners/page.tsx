@@ -4,7 +4,7 @@ import { SiteHeader } from "../components/SiteHeader";
 import { createPageMetadata } from "../site";
 
 export const metadata = createPageMetadata({
-  title: "Aviation Partners",
+  title: "Partners",
   description:
     "Discover Delta Virtual (DLVA) partners supporting a connected and realistic virtual aviation experience.",
   path: "/partners",
